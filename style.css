@@ -1,76 +1,326 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+/* Reset e Tipografia */
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+    margin: 0;
+    padding: 40px;
+    color: #1e293b;
+}
+
+/* Top Bar */
 .top-bar {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
 }
+
+.elegant-input {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    width: 240px;
+    max-width: 100%;
+}
+
+.elegant-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.elegant-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.elegant-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.elegant-btn-secondary {
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    background: #64748b;
+    border: none;
+    color: white;
+}
+
+.elegant-btn-secondary:hover {
+    background: #475569;
+    transform: translateY(-2px);
+}
+
+/* Kanban Board */
 .kanban-board {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 24px;
     max-width: 100%;
 }
+
+/* Columns */
 .column {
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    padding: 15px;
-    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    padding: 24px;
+    background: #ffffff;
+    transition: transform 0.3s ease;
 }
-.column.todo { background-color: #d4edda; }
-.column.in-progress { background-color: #fff3cd; }
-.column.done { background-color: #ffe5cc; }
+
+.column:hover {
+    transform: translateY(-4px);
+}
+
+.column.todo { background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); }
+.column.in-progress { background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); }
+.column.done { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); }
+
 .column h2 {
-    margin: 0 0 10px;
-    font-size: 18px;
-    color: #333;
+    margin: 0 0 16px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1e293b;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
-.task-list { min-height: 100px; }
+
+.task-list {
+    min-height: 100px;
+}
+
+/* Tasks */
 .task {
-    background-color: #f9f9f9;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 10px;
+    background: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
     cursor: move;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
     animation: fadeIn 0.6s ease-out;
+    opacity: 1;
 }
-.task-title { font-weight: bold; margin-bottom: 5px; word-break: break-word; }
-.task-description { font-size: 13px; color: #555; margin-bottom: 8px; word-break: break-word; }
+
+.task.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+}
+
+.task:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.task-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+    word-break: break-word;
+    color: #1e293b;
+}
+
+.task-description {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 12px;
+    word-break: break-word;
+}
+
+.task-priority-badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 16px;
+    color: #fff;
+    margin-bottom: 12px;
+    text-transform: capitalize;
+}
+
+.prioridade-alta .task-priority-badge {
+    background: linear-gradient(90deg, #dc2626, #f87171);
+}
+.prioridade-media .task-priority-badge {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+.prioridade-baixa .task-priority-badge {
+    background: linear-gradient(90deg, #16a34a, #4ade80);
+}
+
+.task-due-date {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
 .task-buttons {
     align-self: flex-end;
     display: flex;
-    gap: 5px;
+    gap: 8px;
 }
+
 .delete-btn, .edit-btn {
-    background-color: transparent;
-    color: #333;
+    background: transparent;
     border: none;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
+    color: #64748b;
+    transition: color 0.3s ease, background 0.3s ease;
+    padding: 4px;
+    border-radius: 8px;
 }
-.delete-btn:hover { color: #dc3545; }
-.edit-btn:hover { color: #007bff; }
 
-/* Cores de Prioridade */
-.prioridade-alta { border-color: #dc3545 !important; }
-.prioridade-media { border-color: #ffc107 !important; }
-.prioridade-baixa { border-color: #28a745 !important; }
+.delete-btn:hover {
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.1);
+}
 
-/* Animação de entrada */
+.edit-btn:hover {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Prioridade Bordas */
+.prioridade-alta { border-color: #f87171 !important; }
+.prioridade-media { border-color: #fbbf24 !important; }
+.prioridade-baixa { border-color: #4ade80 !important; }
+
+/* Tarefas Próximas do Vencimento */
+.due-soon {
+    border: 2px solid #f59e0b !important;
+    animation: pulse 1.5s infinite;
+}
+
+/* Modal */
+.elegant-modal {
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 24px 24px 16px;
+}
+
+.modal-title {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 20px;
+}
+
+.modal-body {
+    padding: 0 24px 24px;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 0 24px 24px;
+    gap: 12px;
+}
+
+/* Campos do Modal */
+.modal-input {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    line-height: 1.5;
+}
+
+.modal-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.modal-input textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.modal-input select {
+    appearance: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") no-repeat right 16px center;
+    background-size: 12px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+/* Animações */
 @keyframes fadeIn {
-    0% { opacity: 0; transform: scale(0.95); }
-    100% { opacity: 1; transform: scale(1); }
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+    .column {
+        width: 100%;
+        max-width: 400px;
+    }
+    .top-bar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    .elegant-input {
+        width: 100%;
+    }
+    .modal-dialog {
+        margin: 16px;
+    }
 }
